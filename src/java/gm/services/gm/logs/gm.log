@@ -1,0 +1,20 @@
+[2021-10-20 23:54:34,947]-DEBUG (gm.config.RMIConfig:58)|config key=game_server_1_id,value=1
+[2021-10-20 23:54:34,949]-DEBUG (gm.config.RMIConfig:58)|config key=game_server_1_rmi_url,value=//127.0.0.1:10001/hero1
+[2021-10-20 23:54:34,949]-DEBUG (gm.config.RMIConfig:58)|config key=game_server_number,value=1
+[2021-10-20 23:54:34,950]-DEBUG (gm.config.RMIConfig:58)|config key=db_username,value=root
+[2021-10-20 23:54:34,951]-DEBUG (gm.config.RMIConfig:58)|config key=game_server_1_name,value=雄霸八方-88
+[2021-10-20 23:54:34,951]-DEBUG (gm.config.RMIConfig:58)|config key=db_url,value=jdbc:mysql://localhost:3306/xj_account_9?autoReconnect=true
+[2021-10-20 23:54:34,951]-DEBUG (gm.config.RMIConfig:58)|config key=db_password,value=mysql
+[2021-10-20 23:54:35,050]-ERROR (gm.services.GameService:110)|Loop up RMI error : error unmarshalling return; nested exception is: 
+	java.lang.ClassNotFoundException: hero.login.rmi.YOYOLoginRMIImpl_Stub (no security manager: RMI class loader disabled)
+[2021-10-20 23:55:05,065]-ERROR (gm.services.GameService:110)|Loop up RMI error : error unmarshalling return; nested exception is: 
+	java.lang.ClassNotFoundException: hero.login.rmi.YOYOLoginRMIImpl_Stub (no security manager: RMI class loader disabled)
+[2021-10-20 23:55:35,066]-ERROR (gm.services.GameService:110)|Loop up RMI error : error unmarshalling return; nested exception is: 
+	java.lang.ClassNotFoundException: hero.login.rmi.YOYOLoginRMIImpl_Stub (no security manager: RMI class loader disabled)
+[2021-10-20 23:56:01,601]-DEBUG (gm.config.RMIConfig:58)|config key=game_server_1_id,value=1
+[2021-10-20 23:56:01,603]-DEBUG (gm.config.RMIConfig:58)|config key=game_server_1_rmi_url,value=//127.0.0.1:10001/hero1
+[2021-10-20 23:56:01,603]-DEBUG (gm.config.RMIConfig:58)|config key=game_server_number,value=1
+[2021-10-20 23:56:01,604]-DEBUG (gm.config.RMIConfig:58)|config key=db_username,value=kitakeyos
+[2021-10-20 23:56:01,604]-DEBUG (gm.config.RMIConfig:58)|config key=game_server_1_name,value=雄霸八方-88
+[2021-10-20 23:56:01,605]-DEBUG (gm.config.RMIConfig:58)|config key=db_url,value=jdbc:mysql://localhost:3306/xj_account_9?autoReconnect=true
+[2021-10-20 23:56:01,605]-DEBUG (gm.config.RMIConfig:58)|config key=db_password,value=dungdz

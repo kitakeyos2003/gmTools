@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<!--<constant name="struts.action.extension" value="action," />
+	<constant name="struts.locale" value="zh_CN"/>
+	<constant name="struts.custom.i18n.resources" value="globalMessages"></constant>
+    <constant name="struts.i18n.encoding" value="UTF-8"/>
+    <constant name="struts.configuration.xml.reload" value="true"/>
+    <constant name="struts.ui.theme" value="simple"/>
+    <constant name="struts.devMode" value="true"/>开发模式下使用，打印详细信息-->
+    
+    <!--<package name="default" namespace="/" extends="json-default">
+    	<action name="jsontest" class="struts2jsonjquery.test.action.JsonJqueryStruts2Action">
+    		 返回单个值的result 
+    		<result name="message" type="json"></result>
+    		 返回UserInfo对象的 
+    		<result name="userInfo" type="json"></result>
+    		 返回List对象的 
+    		<result name="list" type="json"></result>
+    		 返回Map对象的 
+    		<result name="map" type="json"></result>
+    	</action>
+    </package>
+    
+    -->
+    <package name="default" extends="struts-default" namespace="/">
+        <action name="index" class="gm.action.LoginAction" method="loginStart">
+            <result name="success">/index.jsp</result>
+            <result name="logged">/login/welcome.jsp</result>
+        </action>
+        <action name="sitetree">
+            <result>/manage/sitetree.html</result>
+        </action>
+        <action name="logout" class="gm.action.LoginAction" method="logout">
+            <result >/index.jsp</result>
+        </action>
+    </package>
+    <package name="login" extends="struts-default" namespace="/login">
+
+        <default-interceptor-ref name="paramsPrepareParamsStack"/>
+
+        <global-results>
+            <result name="invalid.token">/login/fun_error.jsp</result>
+        </global-results>
+
+        <action name="logined">
+            <result>/login/logined.jsp</result>
+        </action>
+        <action name="enter" class="gm.action.LoginAction" method="login">
+            <result name="success" type="redirect">/index</result>
+            <result name="fail" >/index.jsp</result>
+        </action>
+		
+        <action name="logout" class="gm.action.LoginAction" method="logout">
+            <result >/index.jsp</result>
+        </action>
+
+        <action name="fun_error">
+            <result>/login/fun_error.jsp</result>
+        </action>
+
+        <action name="menulist" class="gm.action.LoginAction" method="menulist">
+            <result>/login/menulist.jsp</result>
+        </action>
+		
+        <action name="addchat" class="gm.action.LoginAction" method="addchat"/>
+		
+        <action name="relink" class="gm.action.LoginAction" method="link"/>
+        
+        <action name="getexpmoudlus" class="gm.action.LoginAction" method="getexpmoudlus">
+            <result name="success" type="redirect"></result>
+        </action>
+    </package>
+	
+    <package name="manage" extends="struts-default" namespace="/manage">
+        <default-interceptor-ref name="paramsPrepareParamsStack"/>
+
+        <global-results>
+            <result name="error">/login/fun_error.jsp</result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping exception="gm.exceptions.FunException" result="error"/>
+        </global-exception-mappings>
+
+        <action name="register" class="gm.action.ManageAction" method="registe">
+            <result name="success" type="redirect">/manage/gmList</result>
+            <result name="fail" >/manage/registe.jsp</result>
+        </action>
+		
+        <action name="updatepwd" class="gm.action.ManageAction" method="updatepwd">
+            <result name="success" >/manage/update_password.jsp</result>
+            <result name="fail" >/manage/update_password.jsp</result>
+        </action>
+		
+        <action name="*Start" class="gm.action.ManageAction" method="start">
+            <result name="success">/manage/{1}.jsp</result>
+        </action>
+        
+        <action name="gmList" class="gm.action.ManageAction" method="gmlist">
+            <result>/manage/gmlist.jsp</result>
+        </action>
+        
+        <action name="addserverexpmoudlusview" class="gm.action.ManageAction" method="addServerexpMoudlusView">
+            <result>/manage/addServerExpMoudlus.jsp</result>
+        </action>
+        
+        <action name="updateserverexpmoudlusview" class="gm.action.ManageAction" method="updateServerExpMoudlusView">
+            <result>/manage/updateServerExpMoudlus.jsp</result>
+        </action>
+        
+        <action name="addserverexpmoudlus" class="gm.action.ManageAction" method="addServerExpMoudlus">
+            <result name="success" type="redirect">/manage/getexpmoudluslist</result>
+            <result name="error" >/login/fun_error.jsp</result>
+        </action>
+        
+        <action name="updateserverexpmoudlus" class="gm.action.ManageAction" method="updateServerExpMoudlus">
+            <result name="success" type="redirect">/manage/getexpmoudluslist</result>
+            <result name="error" >/login/fun_error.jsp</result>
+        </action>
+        
+        <action name="getexpmoudluslist" class="gm.action.ManageAction" method="getExpMoudlusList">
+            <result>/manage/serverExpMoudlusList.jsp</result>
+        </action>
+        
+        
+        <action name="serverList" class="gm.action.ManageAction" method="serverlist">
+            <result>/manage/online_player.jsp</result>
+        </action>
+        
+        <action name="addgoods" class="gm.action.ManageAction" method="serverlist">
+            <result>/manage/addGoodsForPlayer.jsp</result>
+        </action>
+        <action name="auditaddgoods" class="gm.action.ManageAction" method="serverlist">
+            <result>/manage/auditAddGoods.jsp</result>
+        </action>
+        
+        <action name="serverStatus" class="gm.action.ManageAction" method="serverlist">
+            <result>/manage/server_status.jsp</result>
+        </action>
+        
+        <action name="gmLetters" class="gm.action.ManageAction" method="gmLetterList">
+            <result name="success">/manage/gm_letters.jsp</result>
+            <result name="start">/manage/gm_letter_list.jsp</result>
+        </action>
+        
+        <action name="letterInfo" class="gm.action.ManageAction" method="gmLetterInfo">
+            <result>/manage/reply_letter.jsp</result>
+        </action>
+
+        <action name="gmReplyLetter" class="gm.action.ManageAction" method="gmReplyLetter">
+            <result name="success" type="redirect">/manage/gmLetters</result>
+        </action>
+        
+        <action name="gmNoticeList" class="gm.action.ManageAction" method="noticeList">
+            <result name="success">/manage/gm_notices.jsp</result>
+            <result name="start">/manage/gm_notice_list.jsp</result>
+        </action>
+
+        <action name="addNotice" class="gm.action.ManageAction" method="addNotice">
+            <result name="success" type="redirect">/manage/gmNoticeList</result>
+        </action>
+
+        <action name="singleNotice" class="gm.action.ManageAction" method="singleNotice">
+            <result name="success">/manage/notice_update.jsp</result>
+        </action>
+
+        <action name="updNotice" class="gm.action.ManageAction" method="updateNotice">
+            <result name="success" type="redirect">/manage/gmNoticeList</result>
+        </action>
+
+        <action name="delNotice" class="gm.action.ManageAction" method="delNotice">
+            <result name="success" type="redirect">/manage/gmNoticeList</result>
+        </action>
+
+        <action name="queryPlayerInfo" class="gm.action.ManageAction" method="queryPlayerInfo">
+            <result>/manage/queryPlayerInfo.jsp</result>
+        </action>
+                
+        <action name="playerInfo" class="gm.action.ManageAction" method="playerInfo">
+            <result name="success">/manage/playerInfo.jsp</result>
+            <result name="fail" >/login/fun_error.jsp</result>
+        </action>
+        
+        <action name="showChatContent" class="gm.action.ManageAction" method="chatContent">
+            <result>/manage/chatContent.jsp</result>
+        </action>
+        
+        <action name="*Manage" class="gm.action.ManageAction" method="{1}"/>
+
+        <action name="*InfoList" class="gm.action.ManageAction" method="infoList">
+            <result name="success">/manage/{1}.jsp</result>
+            <result name="start">/manage/{1}_list.jsp</result>
+        </action>
+
+        <action name="*MenuInfo" class="gm.action.ManageAction" method="{1}">
+            <result name="success">/manage/showmenulist.jsp</result>
+        </action>
+
+        <!--进入修改页面-->
+        <action name="manage*" class="gm.action.ManageAction" method="{1}Start">
+            <result name="success">/manage/{1}.jsp</result>
+        </action>
+
+        <!--提交修改-->
+        <action name="upd*" class="gm.action.ManageAction" method="{1}">
+            <result name="success">/manage/showmenulist.jsp</result>
+        </action>
+
+        <action name="addIndexNotice" class="gm.action.ManageAction" method="addIndexNotice">
+            <result name="success" type="redirect">/manage/indexNoticeList</result>
+            <result name="fail">/manage/index_notice.jsp</result>
+        </action>
+
+        <action name="updIndexNotice" class="gm.action.ManageAction" method="updIndexNotice">
+            <result name="success" type="redirect">/manage/indexNoticeList</result>
+        </action>
+
+        <action name="indexNoticeList" class="gm.action.ManageAction" method="indexNoticeList">
+            <result name="success">/manage/index_notice_list_data.jsp</result>
+            <result name="start">/manage/index_notice_list.jsp</result>
+        </action>
+
+        <action name="startUpdIndexNotice" class="gm.action.ManageAction" method="getIndexNotice">
+            <result name="success">/manage/index_notice_update.jsp</result>
+        </action>
+
+        <action name="showIndexNotice" class="gm.action.ManageAction" method="getIndexNotice">
+            <result name="success">/manage/index_notice_show.jsp</result>
+        </action>
+
+        <action name="delIndexNotice" class="gm.action.ManageAction" method="delIndexNotice">
+            <result name="success" type="redirect">/manage/indexNoticeList</result>
+        </action>
+
+        <action name="addRpp" class="gm.action.ManageAction" method="addRechargePresentPoint">
+            <result name="success" type="redirect">/manage/rppList</result>
+        </action>
+
+        <action name="updRpp" class="gm.action.ManageAction" method="updRechargePresentPoint">
+            <result name="success" type="redirect">/manage/rppList</result>
+        </action>
+
+        <action name="rppList" class="gm.action.ManageAction" method="getRechargePresentPointList">
+            <result name="success">/manage/rpp_list_data.jsp</result>
+            <result name="start">/manage/rpp_list.jsp</result>
+        </action>
+
+        <action name="getRpp" class="gm.action.ManageAction" method="getRechargePresentPoint">
+            <result name="success">/manage/rpp_update.jsp</result>
+        </action>
+
+        <action name="addLoadingTip" class="gm.action.ManageAction" method="addLoadingTip">
+            <result name="success" type="redirect">/manage/loadingTipList</result>
+        </action>
+
+        <action name="getLoadingTip" class="gm.action.ManageAction" method="getLoadingTip">
+            <result name="success">/manage/loadingTip_update.jsp</result>
+        </action>
+
+        <action name="updLoadingTip" class="gm.action.ManageAction" method="updLoadingTip">
+            <result name="success" type="redirect">/manage/loadingTipList</result>
+        </action>
+
+        <action name="delLoadingTip" class="gm.action.ManageAction" method="delLoadingTip">
+            <result name="success" type="redirect">/manage/loadingTipList</result>
+        </action>
+
+        <action name="loadingTipList" class="gm.action.ManageAction" method="loadingTipList">
+            <result name="success">/manage/loadingTip_list_data.jsp</result>
+            <result name="start">/manage/loadingTip_list.jsp</result>
+        </action>
+        
+        <action name="selectResetPlayersServerId" class="gm.action.ManageAction" method="selectResetPlayersServerId">
+            <result>/manage/resetPlayers.jsp</result>
+        </action>
+        
+        <action name="resetPlayers" class="gm.action.ManageAction" method="resetPlayers">
+            <result>/login/fun_error.jsp</result>
+        </action>        
+
+    </package>
+</struts>
